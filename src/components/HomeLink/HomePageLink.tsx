@@ -6,7 +6,7 @@ interface HomePageLinkProps {
 
 const HomePageLink = ({classname}: HomePageLinkProps) => {
   return (
-    <Link href='/' className={`font-black text-white/30 italic border px-4 py-2 rounded-full ${classname}`}>Power King</Link>
+    <Link href='/' className={`font-black bg-black/50 text-white/30 italic border px-4 py-2 rounded-full ${classname}`}>Power King</Link>
   )
 }
 
