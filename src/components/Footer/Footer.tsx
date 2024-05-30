@@ -13,15 +13,15 @@ const Footer = () => {
             <p className="text-[#999]">Kampala, Uganda</p>
             <div className="flex items-center py-4">
               <Send className="text-[#959] text-2xl" />
-              <p className="text-white ml-2">@Power_king</p>
+              <p className="ml-2">@Power_king</p>
             </div>
             <div className="flex items-center">
               <PhoneIncoming className="text-[#959] text-2xl" />
-              <p className="text-white ml-2">+256 701 997 3455</p>
+              <p className="ml-2">+256 701 997 3455</p>
             </div>
             <div className="flex items-center pt-4">
             <Mails className="text-[#959] text-2xl" />
-              <p className="text-white ml-2">@Power_king</p>
+              <p className="ml-2">@Power_king</p>
             </div>
           </div>
           <div className="flex-1 md:text-right">
