@@ -9,9 +9,14 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     typeof localStorage !== "undefined" && localStorage.getItem("theme")
       ? JSON.parse(localStorage.getItem("theme")!)
       : false;
-  const [darkTheme, setdarkTheme] = useState<boolean>(themeFromStorage);
+  const [darkTheme, setDarkTheme] = useState<boolean>(themeFromStorage);
+  const [renderComponent, setRenderComponent] = useState<boolean>(false);
 
-  <ThemeContext.Provider>
+  useEffect(() => setRenderComponent(true), []);
+
+  if (!renderComponent) return <></>;
+
+  <ThemeContext.Provider value={{ darkTheme, setDarkTheme }}>
     <div className={`${darkTheme ? 'dark' : ''} min-h-screen`}>
       <div className='dark:text-white/80 dark:bg-black text-[#1e1e1e]'>
         {children}
