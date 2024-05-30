@@ -1,28 +1,31 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-import ThemeContext from "@/context/themeContext"
+import ThemeContext from "@/context/themeContext";
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const themeFromStorage: boolean =
-    typeof localStorage !== "undefined" && localStorage.getItem("theme")
-      ? JSON.parse(localStorage.getItem("theme")!)
-      : false;
-  const [darkTheme, setDarkTheme] = useState<boolean>(themeFromStorage);
-  const [renderComponent, setRenderComponent] = useState<boolean>(false);
+  const themeFromLocalStorage: boolean | string | null =
+    typeof localStorage !== "undefined" && localStorage.getItem("theme");
 
-  useEffect(() => setRenderComponent(true), []);
+  const [theme, setTheme] = useState<boolean>(
+    themeFromLocalStorage ? themeFromLocalStorage === "true" : false
+  );
 
-  if (!renderComponent) return <></>;
+  useEffect(() => {
+    const storedTheme = themeFromLocalStorage !== null ? themeFromLocalStorage === "true" : null;
+    setTheme(storedTheme !== null ? storedTheme : false);
+  }, []);
 
-  <ThemeContext.Provider value={{ darkTheme, setDarkTheme }}>
-    <div className={`${darkTheme ? 'dark' : ''} min-h-screen`}>
-      <div className='dark:text-white/80 dark:bg-black text-[#1e1e1e]'>
-        {children}
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <div className={`${theme ? "dark" : ""} min-h-screen`}>
+        <div className="dark:text-white dark:bg-black text-[#1e1e1e]">
+          {children}
+        </div>
       </div>
-    </div>
-  </ThemeContext.Provider>
+    </ThemeContext.Provider>
+  );
 };
 
 export default ThemeProvider;
