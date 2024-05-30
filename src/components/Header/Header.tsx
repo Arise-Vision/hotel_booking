@@ -1,37 +1,31 @@
 import Link from "next/link";
-import { FaUserCircle } from "react-icons/fa";
-import { MdDarkMode } from "react-icons/md";
+import HomePageLink from "../HomeLink/HomePageLink";
+import { CircleUserRound, Moon } from "lucide-react";
 
 const Header = () => {
   return (
     <header className="py-10 px-4 container mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between">
       <div className="flex items-center w-full md:w-2/3">
-        <Link href="/" className="font-black text-black/30 italic animate-ping">Power King</Link>
+        <HomePageLink classname="animate-bounce" />
         <ul className="flex items-center ml-3">
           <li className="ml-4">
             <Link href="/auth">
-              <FaUserCircle className="text-2xl cursor-pointer" />
+            <CircleUserRound className="text-2xl cursor-pointer" />
             </Link>
           </li>
           <li className="ml-4">
             <Link href="/about">
-              <MdDarkMode className="text-2xl cursor-pointer" />
+              <Moon className="text-2xl cursor-pointer" />
             </Link>
           </li>
         </ul>
       </div>
-      <div className="hidden md:block w-1/3">
-        <input type="search" placeholder="Search" className="w-full p-2 border border-black/30 rounded-lg" />
-      </div>
-      <ul className="flex items-center justify-between w-full md:w-1/3 mt-4">
+      <ul className="flex items-center justify-around w-fit gap-4 sm:gap-2 md:w-1/3 mt-4 overflow-x-hidden">
         <li className="hover:-translate-y-2 duration-500 transition-all">
           <Link href='/'>Home</Link>
         </li>
         <li className="hover:-translate-y-2 duration-500 transition-all">
           <Link href='/rooms'>Rooms</Link>
-        </li>
-        <li className="hover:-translate-y-2 duration-500 transition-all">
-          <Link href='/services'>Services</Link>
         </li>
         <li className="hover:-translate-y-2 duration-500 transition-all">
           <Link href='/about'>About</Link>
