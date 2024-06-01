@@ -22,11 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <ThemeProvider>
-          <main className="font-normal">
+          <div className="font-normal">
             <Header />
               {children}
             <Footer />
-          </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
