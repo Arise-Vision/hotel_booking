@@ -1,6 +1,11 @@
 "use client";
-import React, { useState } from "react";
+
+import { useRouter } from "next/navigation"
+import React, { useState, useEffect } from "react";
 import { Github, Chrome } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { signUp } from "next-auth-sanity/client";
+import { signIn, useSession } from "next-auth/react";
 
 const defaultInput = {
   email: "",
@@ -15,20 +20,43 @@ const Auth = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const {data: session} = useSession();
+  const router = useRouter();
+
+  console.log(session);
+
+  useEffect(() => {
+    if(session) router.push('/');
+  }, [router, session])
+
+  const loginHandler = async () => {
+    try {
+      await signIn();
+      router.push('/')
+      toast.success('Welcome back to Power King')
+    } catch (e) {
+      console.log('error:', e);
+      toast.error("Something wen't wrong")
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      console.log(formData);
+      const user = await signUp(formData);
+      if (user) {
+        toast.success('Success. Please sign in');
+      }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.log(error);
+      toast.error("Something wen't wrong");
     } finally {
-      setFormData(defaultInput);
+      setFormData(formData);
     }
   };
 
   return (
-    <section className="container mx-auto">
+    <div className="container mx-auto">
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8 max-w-lg mx-auto">
         <div className="flex mb-8 flex-col md:flex-row items-center justify-between">
           <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl">
@@ -36,7 +64,7 @@ const Auth = () => {
           </h1>
           <p>OR</p>
           <div className="flex items-center">
-            <Github className="mr-3 text-4xl cursor-pointer" />
+            <Github onClick={loginHandler} className="mr-3 text-4xl cursor-pointer" />
             <Chrome className="text-4xl ml-3 cursor-pointer" />
           </div>
         </div>
@@ -46,7 +74,7 @@ const Auth = () => {
             name="name"
             placeholder="Your Name"
             required
-            className="border border-gray-300 px-3 py-2 rounded-md w-full sm:text-sm"
+            className="border border-gray-300 px-3 py-2 rounded-md w-full sm:text-sm text-black"
             value={formData.name}
             onChange={handleInputChange}
           />
@@ -55,7 +83,7 @@ const Auth = () => {
             name="email"
             placeholder="Your Email"
             required
-            className="border border-gray-300 px-3 py-2 rounded-md w-full sm:text-sm"
+            className="border border-gray-300 px-3 py-2 rounded-md w-full sm:text-sm text-black"
             value={formData.email}
             onChange={handleInputChange}
           />
@@ -65,7 +93,7 @@ const Auth = () => {
             placeholder="Password (min. 6 characters)"
             minLength={6}
             required
-            className="border border-gray-300 px-3 py-2 rounded-md w-full sm:text-sm"
+            className="border border-gray-300 px-3 py-2 rounded-md w-full sm:text-sm text-black"
             value={formData.password}
             onChange={handleInputChange}
           />
@@ -76,9 +104,9 @@ const Auth = () => {
             Sign Up
           </button>
         </form>
-        <button className="text-blue-600 underline">Login</button>
+        <button onClick={loginHandler} className="text-blue-600 underline">Login</button>
       </div>
-    </section>
+    </div>
   );
 };
 
