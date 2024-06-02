@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useContext } from "react";
 import HomePageLink from "../HomeLink/HomePageLink";
 import { CircleUserRound, Moon, Sun } from "lucide-react";
 import ThemeContext from "@/context/themeContext";
+import Image from "next/image";
 
 const Header = () => {
   const { theme, setTheme } = useContext(ThemeContext);
+
+  const { data: session } = useSession();
 
   return (
     <div className="py-10 px-4 container mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between">
@@ -15,9 +19,27 @@ const Header = () => {
         <HomePageLink classname="animate-bounce" />
         <ul className="flex items-center ml-3">
           <li className="ml-4">
-            <Link href="/auth">
-              <CircleUserRound className="text-2xl cursor-pointer" />
-            </Link>
+            {session?.user ? (
+              <Link href={`/users/${session.user.id}`}>
+                {session.user.image ? (
+                  <div className="w-10 h-10 rounded-full overflow-hideddn">
+                    <Image
+                      src={session.user.image}
+                      width={40}
+                      height={40}
+                      alt="user image"
+                      className='rounded-full img scale-animation'
+                    />
+                  </div>
+                ) : (
+                  <CircleUserRound className="text-2xl cursor-pointer" />
+                )}
+              </Link>
+            ) : (
+              <Link href="/auth">
+                <CircleUserRound className="text-2xl cursor-pointer" />
+              </Link>
+            )}
           </li>
           <li className="ml-4">
             {theme ? (
