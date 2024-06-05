@@ -122,7 +122,7 @@ const BookRoomCta: FC<Props> = props => {
             onChange={e => setAdults(+e.target.value)}
             min={1}
             max={5}
-            className='w-full border border-gray-300 rounded-lg p-2.5'
+            className='w-full border border-gray-300 rounded-lg p-2.5 text-black'
           />
         </div>
         <div className='w-1/2 pl-2'>
@@ -139,7 +139,7 @@ const BookRoomCta: FC<Props> = props => {
             onChange={e => setNoOfChildren(+e.target.value)}
             min={0}
             max={3}
-            className='w-full border border-gray-300 rounded-lg p-2.5'
+            className='w-full border border-gray-300 rounded-lg p-2.5 text-black'
           />
         </div>
       </div>
@@ -153,7 +153,7 @@ const BookRoomCta: FC<Props> = props => {
       <button
         disabled={isBooked}
         onClick={handleBookNowClick}
-        className='btn-primary w-full mt-6 disabled:bg-gray-500 disabled:cursor-not-allowed'
+        className='bg-transparent border dark:border-white border-black py-3 rounded w-full mt-6 disabled:bg-gray-500 disabled:cursor-not-allowed'
       >
         {isBooked ? 'Booked' : 'Book Now'}
       </button>

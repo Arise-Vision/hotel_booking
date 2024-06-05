@@ -31,7 +31,7 @@ const Search: FC<Props> = ({
   };
 
   return (
-    <section className='bg-tertiary-light px-4 py-6 rounded-lg'>
+    <section className='bg-black/40 dark:bg-white/40 px-4 py-6 rounded-lg mx-12'>
       <div className='container mx-auto flex gap-4 flex-wrap justify-between items-center'>
         <div className='w-full md:1/3 lg:w-auto mb-4 md:mb-0'>
           <label className='block text-sm font-medium mb-2 text-black'>
@@ -66,7 +66,7 @@ const Search: FC<Props> = ({
         </div>
 
         <button
-          className='btn-primary'
+          className='bg-black text-white border-white dark:bg-white px-8 py-4 mt-2 font-bold italic text-2xl dark:text-black/30 shadow shadow-gray-500 border dark:border-black rounded-lg'
           type='button'
           onClick={handleFilterClick}
         >

@@ -1,19 +1,15 @@
 import { NextAuthOptions } from 'next-auth';
 import { SanityAdapter, SanityCredentials } from 'next-auth-sanity';
 import GithubProvider from 'next-auth/providers/github';
-import GoogleProvider from 'next-auth/providers/google';
+
 
 import sanityClient from './sanity';
 
 export const authOptions: NextAuthOptions = {
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET_KEY as string,
     }),
     SanityCredentials(sanityClient),
   ],
@@ -22,7 +18,7 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: SanityAdapter(sanityClient),
   debug: process.env.NODE_ENV === 'development',
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXT_AUTH_SECRET,
   callbacks: {
     session: async ({ session, token }) => {
       const userEmail = token.email;

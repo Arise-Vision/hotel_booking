@@ -16,9 +16,9 @@ const Header = () => {
 
   return (
     <header className='py-10 px-4 container mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between'>
-      <div className='flex items-center w-full md:2/3'>
-        <Link href='/' className='font-black text-tertiary-dark'>
-          Hotelzz
+      <div className='flex items-center w-full md:w-1/3'>
+        <Link href='/' className='bg-gradient-to-br from-transparent via-black/30 to-transparent dark:from-white/30 dark:via-transparent dark:to-white/30 text-white/30 italic border px-4 py-2 rounded-full font-bold'>
+          Power King
         </Link>
         <ul className='flex items-center ml-5'>
           <li className='flex items-center'>
@@ -47,7 +47,7 @@ const Header = () => {
           <li className='ml-2'>
             {darkTheme ? (
               <MdOutlineLightMode
-                className='cursor-pointer'
+                className='cursor-pointer text-lg'
                 onClick={() => {
                   setDarkTheme(false);
                   localStorage.removeItem('hotel-theme');
@@ -55,7 +55,7 @@ const Header = () => {
               />
             ) : (
               <MdDarkMode
-                className='cursor-pointer'
+                className='cursor-pointer text-lg'
                 onClick={() => {
                   setDarkTheme(true);
                   localStorage.setItem('hotel-theme', 'true');
@@ -66,7 +66,7 @@ const Header = () => {
         </ul>
       </div>
 
-      <ul className='flex items-center justify-between w-full md:w-1/3 mt-4'>
+      <ul className='flex items-center justify-between w-full md:w-2/3'>
         <li className='hover:-translate-y-2 duration-500 transition-all'>
           <Link href='/'>Home</Link>
         </li>
@@ -74,7 +74,10 @@ const Header = () => {
           <Link href='/rooms'>Rooms</Link>
         </li>
         <li className='hover:-translate-y-2 duration-500 transition-all'>
-          <Link href='/'>Contact</Link>
+          <Link href='/about'>About</Link>
+        </li>
+        <li className='hover:-translate-y-2 duration-500 transition-all'>
+          <Link href='/contact'>Contact</Link>
         </li>
       </ul>
     </header>

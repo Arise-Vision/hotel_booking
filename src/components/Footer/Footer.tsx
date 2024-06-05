@@ -6,8 +6,8 @@ const Footer = () => {
   return (
     <footer className='mt-16'>
       <div className='container mx-auto px-4'>
-        <Link href='/' className='font-black text-tertiary-dark'>
-          Hotelzz
+        <Link href='/' className='bg-gradient-to-br from-transparent via-black/30 to-transparent dark:from-white/30 dark:via-transparent dark:to-white/30 text-white/30 italic border px-4 py-2 rounded-full font-bold'>
+          Power King
         </Link>
 
         <h4 className='font-semibold text-[40px] py-6'>Contact</h4>
@@ -15,17 +15,23 @@ const Footer = () => {
         <div className='flex flex-wrap gap-16 items-center justify-between'>
           <div className='flex-1'>
             <p>123 Road</p>
-            <div className='flex items-center py-4'>
-              <BsFillSendFill />
-              <p className='ml-2'>codewithlari</p>
+            <div>
+              <Link className='flex items-center py-4 cursor-pointer hover:text-puple-200' href={'https://t.me/ArnaudBan'}>
+                <BsFillSendFill />
+                <p className='ml-2'>@powerKing</p>
+              </Link>
             </div>
-            <div className='flex items-center'>
-              <BsTelephoneOutbound />
-              <p className='ml-2'>000-000-00</p>
+            <div>
+              <Link className='flex items-center cursor-pointer hover:text-puple-200' href="tel:+256701947469">
+                <BsTelephoneOutbound />
+                <p className='ml-2'>Call (256) 701 947469</p>
+              </Link>
             </div>
-            <div className='flex items-center pt-4'>
-              <BiMessageDetail />
-              <p className='ml-2'>codewithlari</p>
+            <div>
+              <Link className='flex items-center pt-4 cursor-pointer hover:text-puple-200' href="mailto:powerKing@gmail.com">
+                <BiMessageDetail />
+                <p className='ml-2'>powerKing@gmail.com</p>
+              </Link>
             </div>
           </div>
 
@@ -47,7 +53,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className='bg-tertiary-light h-10 md:h-[70px] mt-16 w-full bottom-0 left-0' />
+      <div className='dark:bg-white/40 bg-black/40 h-10 md:h-[25px] mt-10 w-full bottom-0 left-0 flex justify-center items-center'>
+        Build by Arnaud and Colline
+      </div>
     </footer>
   );
 };
